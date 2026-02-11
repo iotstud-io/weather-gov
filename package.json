@@ -1,0 +1,22 @@
+{
+  "name": "weather-gov",
+  "description": "Weather.gov component for IoT Studio",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode external",
+    "build": "vite build"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "react": "19.2.2",
+    "react-dom": "19.2.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "5.1.2",
+    "component-vite-config": "github:iotstud-io/component-vite-config#semver:0.0.3",
+    "vite": "7.3.0",
+    "vite-plugin-static-copy": "3.1.4"
+  },
+  "license": "MIT"
+}

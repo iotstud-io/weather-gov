@@ -1,0 +1,16 @@
+{
+    "name": "well-cube-components",
+    "css": [],
+    "components": [
+        {
+            "name": "ForecastFull",
+            "defaultExport": true,
+            "description": "Component to display the full 7 Day forecast from Weather.gov, including current conditions.",
+            "capabilities": {
+                "weather_forecast": "optional",
+                "weather_observations": "optional"
+            },
+            "settings": []
+        }
+    ]
+}
