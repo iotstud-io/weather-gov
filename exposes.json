@@ -10,7 +10,18 @@
                 "weather_forecast": "optional",
                 "weather_observations": "optional"
             },
-            "settings": []
+            "settings": [
+                {
+                    "name": "temperature_format",
+                    "label": "Temperature Format",
+                    "description": "Choose between Celsius and Fahrenheit.",
+                    "default": "f",
+                    "options": [
+                        { "value": "c", "label": "Celsius" },
+                        { "value": "f", "label": "Fahrenheit" }
+                    ]
+                }
+            ]
         }
     ]
 }
