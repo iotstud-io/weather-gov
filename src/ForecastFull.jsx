@@ -1,4 +1,5 @@
 import React, { Activity, useRef, useState } from "react"
+
 import Forecasts from './Forecasts'
 import Today from "./Today"
 import AlertContent from "./AlertContent"
@@ -80,7 +81,13 @@ const ForecastFull = ({
     weather_observations=[] 
 }) => {
 
-    console.log("weather_alerts", weather_alerts)
+    //console.log(weather_forecast, weather_observations)
+
+    let format = 'f'
+
+    if(settings?.temperature_format === 'c') {
+        format = 'c'
+    }
 
     const scrollerRef = useRef(null)
     const [showAlertContent, setShowAlertContent] = useState(false)
@@ -115,8 +122,6 @@ const ForecastFull = ({
         })
     }
 
-    console.log("showAlertContent", showAlertContent)
-
     return <div style={root_style}>
 
         <Activity mode={showAlertContent ? 'visible': 'hidden'}>
@@ -133,7 +138,7 @@ const ForecastFull = ({
         <Activity mode={!showAlertContent ? 'visible': 'hidden'}>
             <Today 
                 mainCardStyle={mainCardStyle}
-                settings={settings}
+                format={format}
                 setActiveAlertData={setActiveAlertData}
                 setAlertColor={setAlertColor}
                 setShowAlertContent={setShowAlertContent}
@@ -160,7 +165,7 @@ const ForecastFull = ({
 
                     <div style={carouselTrackStyle}>
 
-                        <Forecasts forecasts={weather_forecast} theme={theme} />
+                        <Forecasts format={format} forecasts={weather_forecast} theme={theme} />
 
                     </div>
 

@@ -1,6 +1,7 @@
 import React, { Activity } from "react"
 
 import { 
+    f_to_c,
     c_to_f, 
     degToCompass, 
     kmhToMph, 
@@ -27,18 +28,12 @@ const Today = ({
     setActiveAlertData,
     setAlertColor,
     setShowAlertContent,
-    settings,
+    format,
     weather_forecast=[], 
     weather_observations=[],
     weather_alerts, 
     theme 
 }) => {
-
-    let format = 'f'
-
-    if(settings?.temperature_format === 'c') {
-        format = 'c'
-    }
 
     const latest_observation = Array.isArray(weather_observations) && weather_observations[0] ? weather_observations[0]: {}
     const latest_forecast = Array.isArray(weather_forecast) && weather_forecast[0] ? weather_forecast[0]: {}
@@ -51,6 +46,8 @@ const Today = ({
     const todays = Array.isArray(weather_forecast) ? weather_forecast.filter(p => p.startTime.startsWith(today)): []
     const day = todays.find(p => p.isDaytime) || {}
     const night = todays.find(p => !p.isDaytime) || {}
+    const day_formatted = !day?.temperature ? '--': format === 'c' ? Math.round(f_to_c(day.temperature)): Math.round(day.temperature)
+    const night_formatted = !night?.temperature ? '--': format === 'c' ? Math.round(f_to_c(night.temperature)): Math.round(night.temperature)
     const t_formatted = !t ? '--': format === 'f' ? Math.round(c_to_f(t)): Math.round(t)
     const todayName = new Date().toLocaleDateString(undefined, { weekday: 'long' })
     const tcolor = tempColor(t, 'c', theme)
@@ -91,7 +88,7 @@ const Today = ({
                 <h2 className='txt-center'>{todayName}</h2>
 
                 <div className='txt-center' style={{ fontSize: 22 }}>
-                    {day?.temperature || '--'}° / {night?.temperature || '--'}°
+                    {day_formatted}°{format.toUpperCase()} / {night_formatted}°{format.toUpperCase()}
                 </div>
 
             </div>

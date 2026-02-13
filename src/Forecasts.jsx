@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetSvg} from './Functions'
+import { f_to_c, GetSvg } from './Functions'
 
 let cardStyle = {
     width: 275,
@@ -13,8 +13,11 @@ let cardStyle = {
     position: 'relative'
 }
 
-const CardSection = (data, theme, isBottom = false) => (
-    <div 
+const CardSection = (data, theme, isBottom = false, format) => {
+
+    const t_formatted = !data?.temperature ? '--': format === 'c' ? Math.round(f_to_c(data.temperature)): Math.round(data.temperature)
+    
+    return <div 
         className='flx justify-left align-center gap10' 
         style={{ 
             padding: !isBottom ? '20px 10px 10px 10px': '10px',
@@ -25,7 +28,9 @@ const CardSection = (data, theme, isBottom = false) => (
 
         <div style={{ marginLeft: '0 6px'}}>
 
-            <div style={{fontSize: 22, fontWeight: 'bold'}}>{data?.temperature || '--'}°</div>
+            <div style={{fontSize: 22, fontWeight: 'bold'}}>
+                {t_formatted}°{format.toUpperCase()}
+            </div>
 
             <div style={{marginTop: 5}}>{GetSvg(45, 45, data.shortForecast, data.isDaytime)}</div>
             
@@ -51,9 +56,9 @@ const CardSection = (data, theme, isBottom = false) => (
         </div>
 
     </div>
-)
+}
 
-const Forecasts = ({ forecasts=[], theme }) => {
+const Forecasts = ({ forecasts=[], format, theme }) => {
 
     if(forecasts.length === 0) { 
         return null 
@@ -103,9 +108,9 @@ const Forecasts = ({ forecasts=[], theme }) => {
                     {a_day}
                 </div>
                 
-                {CardSection(a, theme, false)}
+                {CardSection(a, theme, false, format)}
 
-                {CardSection(b, theme, true)}
+                {CardSection(b, theme, true, format)}
                 
             </div>
         )
