@@ -121,3 +121,32 @@ export const degToCompass = deg => {
   
   return dirs[Math.floor((d + 22.5) / 45) % 8]
 }
+
+export const c_to_f = c => (c * 9 / 5) + 32
+export const f_to_c = f => (f - 32) * 5 / 9
+
+export const tempColor = (t, u, th) => (
+    f => {
+        const colors = [
+            th.palette.tertiary.dark,
+            th.palette.tertiary.main,
+            th.palette.info.main,
+            th.palette.info.light,
+            th.palette.success.light,
+            th.palette.success.main,
+            th.palette.warning.light,
+            th.palette.error.light,
+            th.palette.error.main
+        ]
+
+        if(f <= 0) return colors[0]
+        if(f <= 16) return colors[1]
+        if(f <= 32) return colors[2]
+        if(f <= 55) return colors[3]
+        if(f <= 65) return colors[4]
+        if(f <= 80) return colors[5]
+        if(f <= 90) return colors[6]
+        if(f <= 100) return colors[7]
+        if(f >= 101) return colors[8]
+    }
+)(u === 'f' ? t : (t * 9 / 5 + 32))

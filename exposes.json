@@ -5,10 +5,11 @@
         {
             "name": "ForecastFull",
             "defaultExport": true,
-            "description": "Component to display the full 7 Day forecast from Weather.gov, including current conditions.",
+            "description": "Component to display the full 7 Day forecast from Weather.gov, including current conditions and alerts.",
             "capabilities": {
                 "weather_forecast": "optional",
-                "weather_observations": "optional"
+                "weather_observations": "optional",
+                "weather_alerts": "optional"
             },
             "settings": [
                 {

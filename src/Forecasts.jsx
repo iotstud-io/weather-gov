@@ -25,7 +25,7 @@ const CardSection = (data, theme, isBottom = false) => (
 
         <div style={{ marginLeft: '0 6px'}}>
 
-            <div style={{fontSize: 22, fontWeight: 'bold'}}>{data.temperature}°</div>
+            <div style={{fontSize: 22, fontWeight: 'bold'}}>{data?.temperature || '--'}°</div>
 
             <div style={{marginTop: 5}}>{GetSvg(45, 45, data.shortForecast, data.isDaytime)}</div>
             
@@ -80,6 +80,10 @@ const Forecasts = ({ forecasts=[], theme }) => {
         const a_day = new Date(a.startTime).toLocaleDateString('en-US', { weekday: 'long' })
                 
         if(a_day === day) {
+            continue
+        }
+
+        if(!a || !b) {
             continue
         }
 
