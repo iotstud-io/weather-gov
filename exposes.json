@@ -9,7 +9,8 @@
             "capabilities": {
                 "weather_forecast": "optional",
                 "weather_observations": "optional",
-                "weather_alerts": "optional"
+                "weather_alerts": "optional",
+                "weather_gridpoint_data": "optional"
             },
             "settings": [
                 {

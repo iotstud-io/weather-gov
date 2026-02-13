@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Alert from './Alert'
 
 const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme, weather_alerts }) => {
@@ -35,7 +35,6 @@ const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme,
         transform: 'translateX(-50%)',
         width: 'fit-content',
         height: 'fit-content',
-        display: 'block',
         position: 'absolute',
         padding: 4,
         margin: 0,
@@ -50,7 +49,7 @@ const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme,
                 setShowAlertContent={setShowAlertContent}
                 theme={theme} 
                 title="Extreme/Severe Weather Alerts" 
-                color={theme.palette.error.light} 
+                color={theme.palette.error.dark} 
                 total={totals.high} />
         }
     }
@@ -83,10 +82,10 @@ const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme,
         }
     }
 
-    return <div className="flx justify-center align-center nw" style={style}>
-        {showLowAlerts()}
-        {showMediumAlerts()}
+    return <div className="flx justify-center align-center nw gap2" style={style}>
         {showHighAlerts()}
+        {showMediumAlerts()}
+        {showLowAlerts()}
     </div>
 }
 

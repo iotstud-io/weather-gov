@@ -1,5 +1,6 @@
 import React from 'react'
-import { f_to_c, GetSvg } from './Functions'
+
+import ForecastCard from './ForecastCard'
 
 let cardStyle = {
     width: 275,
@@ -11,51 +12,6 @@ let cardStyle = {
     padding: 0,
     margin: 0,
     position: 'relative'
-}
-
-const CardSection = (data, theme, isBottom = false, format) => {
-
-    const t_formatted = !data?.temperature ? '--': format === 'c' ? Math.round(f_to_c(data.temperature)): Math.round(data.temperature)
-    
-    return <div 
-        className='flx justify-left align-center gap10' 
-        style={{ 
-            padding: !isBottom ? '20px 10px 10px 10px': '10px',
-            margin: '0',
-            height: '50%', 
-            borderTop: isBottom ? `1px solid ${theme.palette.background.default}`: 'none' 
-        }}>
-
-        <div style={{ marginLeft: '0 6px'}}>
-
-            <div style={{fontSize: 22, fontWeight: 'bold'}}>
-                {t_formatted}°{format.toUpperCase()}
-            </div>
-
-            <div style={{marginTop: 5}}>{GetSvg(45, 45, data.shortForecast, data.isDaytime)}</div>
-            
-        </div>
-
-        <div>
-
-            <div className='txt-left' style={{ fontSize: 15}}>
-                
-                {data.shortForecast}
-
-                {data.windDirection && data.windSpeed && `
-                    with winds from
-                    ${data.windDirection} @ 
-                    ${data.windSpeed}
-                `}
-
-                {(data.probabilityOfPrecipitation.value > 0) && `
-                    and a ${data.probabilityOfPrecipitation.value}% chance of precipitation
-                `}
-                    
-            </div>
-        </div>
-
-    </div>
 }
 
 const Forecasts = ({ forecasts=[], format, theme }) => {
@@ -93,26 +49,14 @@ const Forecasts = ({ forecasts=[], format, theme }) => {
         }
 
         cards.push(
-            <div style={cardStyle} key={a?.startTime}>
-
-                <div style={{
-                    position: 'absolute', 
-                    top: '-10px', 
-                    left: '50%', 
-                    transform: 'translateX(-50%)',
-                    fontSize: 16, 
-                    background: theme.palette.background.default,
-                    padding: '4px 12px 2px 12px',
-                    borderRadius: 10,
-                }}>
-                    {a_day}
-                </div>
-                
-                {CardSection(a, theme, false, format)}
-
-                {CardSection(b, theme, true, format)}
-                
-            </div>
+            <ForecastCard 
+                day={a_day}
+                key={a.startTime} 
+                top={a} 
+                bottom={b} 
+                theme={theme} 
+                format={format}
+                style={cardStyle} />
         )
     }
 

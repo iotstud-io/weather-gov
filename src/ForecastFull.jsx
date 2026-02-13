@@ -3,6 +3,7 @@ import React, { Activity, useRef, useState } from "react"
 import Forecasts from './Forecasts'
 import Today from "./Today"
 import AlertContent from "./AlertContent"
+import FullDesc from "./FullDesc"
 
 const CARD_SIZE = 275
 const CARD_GAP = 16
@@ -53,7 +54,7 @@ const carouselContainerStyle = {
 const carouselViewportStyle = {
     flex: "1 1 auto",
     minWidth: 0,
-    overflow: "hidden",
+    overflow: "visible",
 }
 
 const carouselScrollerStyle = {
@@ -78,10 +79,11 @@ const ForecastFull = ({
     theme, 
     weather_alerts=[], 
     weather_forecast=[], 
-    weather_observations=[] 
+    weather_observations=[],
+    weather_gridpoint_data={}
 }) => {
 
-    //console.log(weather_forecast, weather_observations)
+    console.log(weather_forecast, weather_observations)
 
     let format = 'f'
 
@@ -93,6 +95,7 @@ const ForecastFull = ({
     const [showAlertContent, setShowAlertContent] = useState(false)
     const [activeAlertData, setActiveAlertData] = useState([])
     const [alertColor, setAlertColor] = useState(null)
+    const [showFullDesc, setShowFullDesc] = useState({hide: true, desc: ''})
 
     root_style = {
         ...root_style,
@@ -135,17 +138,27 @@ const ForecastFull = ({
                 weather_alerts={weather_alerts} />
          </Activity>
 
-        <Activity mode={!showAlertContent ? 'visible': 'hidden'}>
+        <Activity mode={(!showAlertContent && showFullDesc.hide) ? 'visible': 'hidden'}>
             <Today 
                 mainCardStyle={mainCardStyle}
                 format={format}
+                setShowFullDesc={setShowFullDesc}
                 setActiveAlertData={setActiveAlertData}
                 setAlertColor={setAlertColor}
                 setShowAlertContent={setShowAlertContent}
                 theme={theme}
                 weather_alerts={weather_alerts}
                 weather_forecast={weather_forecast}
-                weather_observations={weather_observations} />
+                weather_observations={weather_observations} 
+                weather_gridpoint_data={weather_gridpoint_data} />
+        </Activity>
+
+        <Activity mode={showFullDesc.hide ? 'hidden': 'visible'}>
+            <FullDesc 
+                mainCardStyle={mainCardStyle} 
+                setShowFullDesc={setShowFullDesc} 
+                theme={theme}
+                desc={showFullDesc.desc} />
         </Activity>
 
         <div style={carouselContainerStyle}>
