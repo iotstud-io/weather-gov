@@ -10,20 +10,7 @@ import {
 
 import Alerts from './Alerts'
 
-let temp_style = {
-    flexShrink: 0,
-    borderRadius: '50%',
-    width: '90px',
-    height: '90px',
-    textAlign: 'center',
-    margin: '0',
-    fontSize: '28px',
-    fontWeight: 'bold',
-    padding: '22px 0',
-}
-
 const Today = ({ 
-    mainCardStyle,
     setActiveAlertData,
     setAlertColor,
     setShowFullDesc,
@@ -57,21 +44,18 @@ const Today = ({
     //const day = todays.find(p => p.isDaytime) || {}
     //const night = todays.find(p => !p.isDaytime) || {}
 
-
     const instanceTempStyle = { 
-        ...temp_style, 
         textShadow: `2px 2px 2px ${theme.palette.background.shadow}`,
         outline: `3px solid ${tcolor}`,
         backgroundColor: theme.palette.background.paper,
     }
 
-    mainCardStyle = {
-        ...mainCardStyle,
+    const style = {
         backgroundColor: theme.palette.background.paper,
         border: `2px solid ${theme.palette.background.paper}`,
     }
 
-    return <div style={{...mainCardStyle, marginRight: 10}}>
+    return <div className='wg-main-card text-center' style={{...style, marginRight: 10}}>
 
         <Activity mode={weather_alerts.length > 0 ? 'visible': 'hidden'}>
             <Alerts 
@@ -84,7 +68,7 @@ const Today = ({
 
         <div className='flx justify-between align-center gap10' style={{ width: '100%' }}>
 
-            <div style={instanceTempStyle}>
+            <div className='wg-temperature' style={instanceTempStyle}>
                 {t_formatted}°{format.toUpperCase()}
             </div>
 

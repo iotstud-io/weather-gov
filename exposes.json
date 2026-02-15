@@ -1,11 +1,13 @@
 {
     "name": "weather-gov-components",
-    "css": [],
     "components": [
         {
             "name": "ForecastFull",
             "defaultExport": true,
             "description": "Component to display the full 7 Day forecast from Weather.gov, including current conditions and alerts.",
+            "css": [
+                "css/weather-gov-shared.css"
+            ],
             "capabilities": {
                 "weather_forecast": "optional",
                 "weather_observations": "optional",

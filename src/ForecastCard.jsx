@@ -3,22 +3,17 @@ import React, { Activity, useState } from 'react'
 import ForecastCardFullDesc from './ForecastCardFullDesc'
 import ForecastCardSection from './ForecastCardSection'
 
-const ForecastCard = ({ day, top, bottom, style, theme, format}) => {
+const ForecastCard = ({ day, top, bottom, theme, format}) => {
 
     const [showFullDesc, setShowFullDesc] = useState({show: false, desc: '', title: ''})
 
-    return <div style={style}>
+    const style = {
+        backgroundColor: theme.palette.background.paper,
+    }
 
-        <div style={{
-            position: 'absolute', 
-            top: '50%', 
-            left: '50%', 
-            transform: 'translateX(-50%) translateY(-50%)',
-            fontSize: 14, 
-            background: theme.palette.background.default,
-            padding: '0 10px 2px 10px',
-            borderRadius: 10,
-        }}>
+    return <div className='wg-forecasts-card' style={style}>
+
+        <div className='wg-day' style={{ backgroundColor: theme.palette.background.default }}>
             {day}
         </div>
 

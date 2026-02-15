@@ -2,32 +2,15 @@ import React from 'react'
 
 import ForecastCard from './ForecastCard'
 
-let cardStyle = {
-    width: 275,
-    minWidth: 275,
-    height: 240,
-    borderRadius: 30,
-    borderShape: 'squircle',
-    textAlign: "center",
-    padding: 0,
-    margin: 0,
-    position: 'relative'
-}
-
 const Forecasts = ({ forecasts=[], format, theme }) => {
 
     if(forecasts.length === 0) { 
         return null 
     }
 
-    cardStyle = {
-        ...cardStyle,
-        backgroundColor: theme.palette.background.paper,
-        scrollSnapAlign: "start",
-    }
-
     const cards = []
     const day = new Date().toLocaleDateString('en-US', { weekday: 'long' })
+    
     let i = 0
 
     if(!forecasts[0].isDaytime) {
@@ -55,8 +38,7 @@ const Forecasts = ({ forecasts=[], format, theme }) => {
                 top={a} 
                 bottom={b} 
                 theme={theme} 
-                format={format}
-                style={cardStyle} />
+                format={format} />
         )
     }
 

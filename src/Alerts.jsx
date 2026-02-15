@@ -29,17 +29,6 @@ const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme,
         })
     }
 
-    const style = {
-        top: '-21px', 
-        left: '50%', 
-        transform: 'translateX(-50%)',
-        width: 'fit-content',
-        height: 'fit-content',
-        position: 'absolute',
-        padding: 4,
-        margin: 0,
-    }
-
     const showHighAlerts = () => {
         if(totals.high > 0) {
             return <Alert 
@@ -82,7 +71,7 @@ const Alerts = ({ setActiveAlertData, setAlertColor, setShowAlertContent, theme,
         }
     }
 
-    return <div className="flx justify-center align-center nw gap2" style={style}>
+    return <div className='wg-alert-container flx justify-center align-center nw gap2'>
         {showHighAlerts()}
         {showMediumAlerts()}
         {showLowAlerts()}

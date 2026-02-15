@@ -6,73 +6,8 @@ import AlertContent from "./AlertContent"
 import FullDesc from "./FullDesc"
 
 const CARD_SIZE = 275
-const CARD_GAP = 16
+const CARD_GAP = 15
 const SCROLL_STEP = CARD_SIZE + CARD_GAP
-const SCROLLBAR_CLIP_SIZE = 24
-
-let root_style = {
-    width: "100%",
-    height: 'auto',
-    display: "flex",
-    alignItems: "stretch",
-    overflow: "hidden",
-    padding: '15px 20px',
-    border: '1px solid transparent',
-    borderRadius: '10px',
-}
-
-let mainCardStyle = {
-    width: CARD_SIZE,
-    minWidth: CARD_SIZE,
-    height: 255,
-    borderRadius: 30,
-    borderShape: 'squircle',
-    textAlign: "center",
-    padding: "15px",
-    position: 'relative',
-}
-
-let arrowButtonStyle = {
-    width: 36,
-    minWidth: 36,
-    height: 36,
-    borderRadius: 9999,
-    borderColor: "transparent",
-    fontSize: 18,
-    lineHeight: 1,
-    cursor: "pointer",
-}
-
-const carouselContainerStyle = {
-    flex: "1 1 auto",
-    minWidth: 0,
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-}
-
-const carouselViewportStyle = {
-    flex: "1 1 auto",
-    minWidth: 0,
-    overflow: "visible",
-}
-
-const carouselScrollerStyle = {
-    overflowX: "auto",
-    overflowY: "hidden",
-    scrollBehavior: "smooth",
-    scrollSnapType: "x mandatory",
-    WebkitOverflowScrolling: "touch",
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
-    paddingBottom: SCROLLBAR_CLIP_SIZE,
-    marginBottom: -SCROLLBAR_CLIP_SIZE,
-}
-
-const carouselTrackStyle = {
-    display: "flex",
-    gap: `${CARD_GAP}px`,
-}
 
 const ForecastFull = ({ 
     settings, 
@@ -82,8 +17,6 @@ const ForecastFull = ({
     weather_observations=[],
     weather_gridpoint_data={}
 }) => {
-
-    console.log(weather_forecast, weather_observations)
 
     let format = 'f'
 
@@ -97,16 +30,14 @@ const ForecastFull = ({
     const [alertColor, setAlertColor] = useState(null)
     const [showFullDesc, setShowFullDesc] = useState({hide: true, desc: ''})
 
-    root_style = {
-        ...root_style,
+    const root_style = {
         boxShadow: `2px 2px 2px ${theme.palette.background.shadow}`,
         background:
             `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.default}) padding-box,
              linear-gradient(135deg, ${theme.palette.background.paper}, ${theme.palette.background.shadow}) border-box`
     }
 
-    arrowButtonStyle = {
-        ...arrowButtonStyle,
+    const arrowButtonStyle = {
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
     }
@@ -125,13 +56,12 @@ const ForecastFull = ({
         })
     }
 
-    return <div style={root_style}>
+    return <div className="wg-forecast-root" style={root_style}>
 
         <Activity mode={showAlertContent ? 'visible': 'hidden'}>
             <AlertContent
                 alerts={activeAlertData} 
                 color={alertColor}
-                mainCardStyle={mainCardStyle}
                 theme={theme}
                 setActiveAlertData={setActiveAlertData}
                 setShowAlertContent={setShowAlertContent} 
@@ -140,7 +70,6 @@ const ForecastFull = ({
 
         <Activity mode={(!showAlertContent && showFullDesc.hide) ? 'visible': 'hidden'}>
             <Today 
-                mainCardStyle={mainCardStyle}
                 format={format}
                 setShowFullDesc={setShowFullDesc}
                 setActiveAlertData={setActiveAlertData}
@@ -155,16 +84,16 @@ const ForecastFull = ({
 
         <Activity mode={showFullDesc.hide ? 'hidden': 'visible'}>
             <FullDesc 
-                mainCardStyle={mainCardStyle} 
                 setShowFullDesc={setShowFullDesc} 
                 theme={theme}
                 desc={showFullDesc.desc} />
         </Activity>
 
-        <div style={carouselContainerStyle}>
+        <div className='wg-carousel-container'>
 
             <button
                 type="button"
+                className="wg-carousel-btn"
                 style={arrowButtonStyle}
                 onClick={() => handleShift(-1)}
                 aria-label="Scroll forecast left"
@@ -172,11 +101,11 @@ const ForecastFull = ({
                 &#8249;
             </button>
 
-            <div style={carouselViewportStyle} aria-label="Forecast carousel">
+            <div className='wg-carousel-viewport' aria-label="Forecast carousel">
 
-                <div ref={scrollerRef} style={carouselScrollerStyle}>
+                <div ref={scrollerRef} className='wg-carousel-scroller'>
 
-                    <div style={carouselTrackStyle}>
+                    <div className='wg-carousel-tracker'>
 
                         <Forecasts format={format} forecasts={weather_forecast} theme={theme} />
 
@@ -187,6 +116,7 @@ const ForecastFull = ({
 
             <button
                 type="button"
+                className="wg-carousel-btn"
                 style={arrowButtonStyle}
                 onClick={() => handleShift(1)}
                 aria-label="Scroll forecast right"

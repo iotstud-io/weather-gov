@@ -7,15 +7,9 @@ const ForecastCardSection = ({ data, isBottom = false, theme, format, setShowFul
     const t_formatted = !data?.temperature ? '--': format === 'c' ? Math.round(f_to_c(data.temperature)): Math.round(data.temperature)
 
     return <div 
-        className='flx justify-left align-center gap20'
+        className='wg-forecast-card-section flx justify-left align-center gap20'
         onClick={() => setShowFullDesc({show: true, desc: data.detailedForecast, title: data.name})}
-        style={{ 
-            cursor: 'pointer',
-            padding: '10px',
-            margin: '0',
-            height: '50%', 
-            borderTop: isBottom ? `1px solid ${theme.palette.background.default}`: 'none' 
-        }}>
+        style={{ borderTop: isBottom ? `1px solid ${theme.palette.background.default}`: 'none' }}>
 
         <div style={{ marginLeft: 10}}>
 

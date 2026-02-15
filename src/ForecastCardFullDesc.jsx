@@ -3,13 +3,7 @@ import React from 'react'
 const ForecastCardFullDesc = ({ desc, setShowFullDesc, style, theme, title }) => {
 
     const button_style = { 
-        cursor: 'pointer', 
-        borderRadius: '100vh', 
         border: `2px solid ${theme.palette.background.default}`, 
-        padding: '6px 30px 9px 30px', 
-        width: 'fit-content', 
-        margin: '4px auto 0 auto',
-        textAlign: 'center',
     }
 
     const handleHide = () => {
@@ -24,17 +18,17 @@ const ForecastCardFullDesc = ({ desc, setShowFullDesc, style, theme, title }) =>
     }
 
     return <div 
-        className='txt-left' 
+        className='wg-forecasts-card txt-left' 
         style={cardStyle} 
         onClick={() => handleHide()}>
 
-        <div style={{ width: '245px', height: '100%', overflowY: 'auto' }}>
+        <div className='wg-forecast-desc'>
 
             <h3 className='txt-center'>{title}</h3>
 
             <div className='txt-left' style={{ fontSize: 18 }}>{desc}</div>
 
-            <div style={button_style}>
+            <div className='wg-btn' style={button_style}>
                 DONE
             </div>
 

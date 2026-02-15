@@ -12,20 +12,9 @@ const Alert = ({
 }) => {
 
     const style = {
-        cursor: 'pointer',
         backgroundColor: color, 
-        width: 20,
-        height: 20,
-        fontSize: 17,
-        fontWeight: 900,
-        margin: '0',
-        verticalAlign: 'middle',
         color: theme.palette.background.default,
-        borderRadius: '50%',
-        padding: 2,
         border: `6px solid ${theme.palette.background.default}`,
-        boxSizing: 'content-box',
-        lineHeight: '19px',
     }
 
     const handleClick = () => {
@@ -37,7 +26,7 @@ const Alert = ({
     return <div 
         onClick={() => handleClick()} 
         title={title} 
-        className="circ" 
+        className='wg-alert-btn' 
         style={style}>
         {total}
     </div>
