@@ -5,7 +5,7 @@ const FullDesc = ({ desc, setShowFullDesc, theme }) => {
     const style = {
         border: `2px solid ${theme.palette.background.paper}`,
         marginRight: 10,
-        marginTop: 10,
+        paddingTop: 20,
         fontSize: 16,
     }
 
