@@ -16,15 +16,28 @@
     box-sizing: border-box;
 
     .wg-carousel-btn {
-        width: 36px;
-        min-width: 36px;
-        height: 36px;
+        width: 26px;
+        min-width: 26px;
+        height: 26px;
         border-radius: 50%;
         border-color: transparent;
         font-size: 18px;
         line-height: 1;
         cursor: pointer;
         transition: filter 120ms ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+        font-weight: bold;
+    }
+
+    .wg-carousel-btn-left {
+        left: -14px;
+    }
+
+    .wg-carousel-btn-right {
+        right:-14px;
     }
 
     .wg-carousel-btn:hover {
@@ -43,6 +56,8 @@
         flex: 1 1 auto;
         min-width: 0;
         overflow: visible;
+        position: relative;
+        margin-left: 10px;
     }
 
     .wg-carousel-tracker {

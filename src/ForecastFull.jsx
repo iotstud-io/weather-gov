@@ -40,6 +40,7 @@ const ForecastFull = ({
     const arrowButtonStyle = {
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
+        outline: `1px solid ${theme.palette.background.default}`,
     }
 
     const handleShift = direction => {
@@ -91,17 +92,17 @@ const ForecastFull = ({
 
         <div className='wg-carousel-container'>
 
-            <button
-                type="button"
-                className="wg-carousel-btn"
-                style={arrowButtonStyle}
-                onClick={() => handleShift(-1)}
-                aria-label="Scroll forecast left"
-            >
-                &#8249;
-            </button>
-
             <div className='wg-carousel-viewport' aria-label="Forecast carousel">
+
+                <button
+                    type="button"
+                    className="wg-carousel-btn wg-carousel-btn-left"
+                    style={arrowButtonStyle}
+                    onClick={() => handleShift(-1)}
+                    aria-label="Scroll forecast left"
+                >
+                    &#8249;
+                </button>
 
                 <div ref={scrollerRef} className='wg-carousel-scroller'>
 
@@ -112,18 +113,18 @@ const ForecastFull = ({
                     </div>
 
                 </div>
+
+                <button
+                    type="button"
+                    className="wg-carousel-btn wg-carousel-btn-right"
+                    style={arrowButtonStyle}
+                    onClick={() => handleShift(1)}
+                    aria-label="Scroll forecast right"
+                >
+                    &#8250;
+                </button>
+
             </div>
-
-            <button
-                type="button"
-                className="wg-carousel-btn"
-                style={arrowButtonStyle}
-                onClick={() => handleShift(1)}
-                aria-label="Scroll forecast right"
-            >
-                &#8250;
-            </button>
-
         </div>
     </div>
 }
