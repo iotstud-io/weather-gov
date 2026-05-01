@@ -185,11 +185,16 @@
 .wg-temperature {
     flex-shrink: 0;
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     text-align: center;
     margin: 0;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
-    padding: 22px 0;
+    padding: 19px 0;
+}
+
+.wg-stats {
+    margin: 16px 0 0 0;
+    gap: 16px;
 }

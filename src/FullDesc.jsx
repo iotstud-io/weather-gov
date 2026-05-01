@@ -7,6 +7,7 @@ const FullDesc = ({ desc, setShowFullDesc, theme }) => {
         marginRight: 10,
         paddingTop: 20,
         fontSize: 16,
+        overflowY: 'auto',
     }
 
     const button_style = { 

@@ -84,7 +84,7 @@ const Today = ({
 
         </div>
 
-        <div className='flx justify-center align-center'  style={{ margin: '20px 0 0 0', gap: 16 }}>
+        <div className='wg-stats flx justify-center align-center'>
 
             {current_wind_speed && current_wind_direction && current_wind_gust &&
             <div className='flx justify-center align-center gap2'>
